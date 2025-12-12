@@ -112,3 +112,59 @@ h3{
     font-size: var(--fs-2xl);
     font-weight: 500;
 }
+/* flex box  */
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-coloumn{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}
+
+.flex-nowrap{
+    flex-wrap: nowrap;
+}
+
+.justify-start {
+     justify-content: flex-start;
+ }
+.justify-end { 
+    justify-content: flex-end; 
+}
+.justify-between {
+     justify-content: space-between;
+ }
+.justify-around {
+     justify-content: space-around;
+ }
+.justify-evenly {
+     justify-content: space-evenly;
+ }
+
+.align-start {
+     align-items: flex-start;
+}
+.align-end { 
+    align-items: flex-end;
+ }
+.align-baseline {
+     align-items: baseline;
+}
+.align-stretch {
+     align-items: stretch;
+}
+
+/* grid */
+.grid{
+    display: grid;
+}

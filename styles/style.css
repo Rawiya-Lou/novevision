@@ -57,6 +57,7 @@ header{
 .hero-section {
     padding: var(--space-xl) var(--space-md);
     margin-top: var(--space-xl);
+    height: auto;   
 }
 .hero__content{
     width: 50%;
@@ -126,5 +127,23 @@ header{
     transform: scale(0.81);
 }
     
+}
+
+/* form */
+.form-section{
+    width: 100%;
+   overflow: hidden;
+    margin-top: var(--space-3xl);
+    padding: var(--space-3xl);
+    border: 1px solid red;
+    max-width: 500px;
+    min-width: 100%;
+    justify-items: center;
+    align-content: center;
+}
+.form{
+    margin-top: var(--space-3xl);
+    display: grid;
+    grid-template-rows: repeat(4, 100px) auto auto repeat(2, 1fr);
 }
 

@@ -18,7 +18,7 @@
     <title>Nova Vision landing page with booking form</title>
 </head>
 <body>
-<div class="bg-color-overlay">
+    <div class="bg-color-overlay">
     <div class="bg-image"></div>
 </div>
     <header class="header flex-center flex-container glass-effect" id="header">
@@ -27,28 +27,92 @@
         </div>
        
     </header>
-
+    
     <main>
         
-        <section class="hero-section hero flex-container justify-end">
-            <div class="hero__content flex-container justify-end align-start  flex-coloumn">
-                <h1 class="hero__title">Nova Vision</h1>
-                <h2 class="hero__subtitle">Where innovation meets design</h2>
-                <p class="hero__para">Your Gateway to a Stunning Online Presence Nova Vision is a front-end web development and web design studio dedicated to crafting visually stunning and highly functional websites.</p>
-                <a href="#form">
-                    <button class="scroll-down-btn hero__btn">Book <img src="images/Btn-icon.svg" alt="Scroll down btn icon" class="btn-icon"></button>
+    <section class="hero-section hero flex-container justify-end">
+        <div class="hero__content flex-container justify-end align-start  flex-coloumn">
+            <h1 class="hero__title">Nova Vision</h1>
+            <h2 class="hero__subtitle">Where innovation meets design</h2>
+            <p class="hero__para">Your Gateway to a Stunning Online Presence Nova Vision is a front-end web development and web design studio dedicated to crafting visually stunning and highly functional websites.</p>
+            <a href="#form"><button class="scroll-down-btn hero__btn">Book <img src="images/Btn-icon.svg" alt="Scroll down btn icon" class="btn-icon"></button></a>
+        </div>
+    </section>
+        </div>
+        <section class="form-section">
+            <form action="" id="form" class="form">
+                <h3>Fill the form</h3>
 
-                </a>
-            </div>
-           
+                <div><label class="label name-label" for="name" id="label">Full Name:</label><input type="text" id="name" class="name-info info-input" name="FullName" placeholder="Enter your full name"></div>
 
-        </section>
-        <section>
-            <form action=""></form>
+                <div><div class="country-code">(+213) DZ</div><label class="label number-label" for="phone">Phone Number:</label><input type="tel" id="phone" class="phone-info info-input" placeholder="Enter your phone number"></div>
+
+                <div>
+                    <p>Choose a Service:</p>
+                    <input type="checkbox" id="graphic" name="Service" value="Graphic design"><label for="graphic">Graphic Design</label>
+
+                     <input type="checkbox" id="business" name="Service" value="Business cards"><label for="business">Business Cards</label>
+
+                      <input type="checkbox" id="identification" name="Service" value="Identification Cards"><label for="identification">Identification Cards</label>
+
+                       <input type="checkbox" id="promotional" name="Service" value="Promotional materials"><label for="promotional">Promotional Materials</label>
+                </div>
+
+                <div>
+                    <label for="cities">Select a City:</label>
+                    <select name="City" id="cities">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="algiers">Algiers</option>
+                        <option value="oran">Oran</option>
+                        <option value="constantine">Constantine</option>
+                        <option value="annaba">Annaba</option>
+                        <option value="batna">Batna</option>
+                        <option value="setif">Setif</option>
+                        <option value="blida">Blida</option>
+                        <option value="chlef">Chlef</option>
+                        <option value="bejaia">Bejaia</option>
+                        <option value="tlemcen">Tlemcen</option>
+                        <option value="ouargla">Ouargla</option>
+                        <option value="skikda">Skikda</option>
+                        <option value="el-oudja">El Oued</option>
+                        <option value="tizi-ouzou">Tizi Ouzou</option>
+                        <option value="mascara">Mascara</option>
+                        <option value="ghardaia">Ghardaia</option>
+                        <option value="laghouat">Laghouat</option>
+                        <option value="boumerdes">Boumerdes</option>
+                        <option value="el-tarf">El Tarf</option>
+                        <option value="ain-temouchent">Ain Temouchent</option>
+                        <option value="sidi-bel-abbes">Sidi Bel Abbès</option>
+                        <option value="khenchela">Khenchela</option>
+                        <option value="tipaza">Tipaza</option>
+                        <option value="ain-defla">Ain Defla</option>
+                        <option value="relizane">Relizane</option>
+                        <option value="mostaganem">Mostaganem</option>
+                        <option value="el-bayadh">El Bayadh</option>
+                        <option value="bechar">Bechar</option>
+                        <option value="biskra">Biskra</option>
+                        <option value="mila">Mila</option>
+                        <option value="tamanrasset">Tamanrasset</option>
+                        <option value="adrar">Adrar</option>
+                        <option value="tindouf">Tindouf</option>
+                        <option value="ain-salah">Ain Salah</option>
+                        <option value="el-menia">El Menia</option>
+                        <option value="souq-ahras">Souq Ahras</option>
+                        <option value="tissemsilt">Tissemsilt</option>
+                        <option value="el-oued">El Oued</option>
+                    </select>
+                </div>
+                <div class="calendar-container"><p>Date and Time:</p></div>
+
+                <div><label for="message">Leave a message:</label>
+                <textarea name="Message" id="message" placeholder="Write a message"></textarea></div>
+                <button type="submit" class="submit-btn btn" id="submit-form-btn">Send</button>
+
+            </form>
         </section>
     </main>
     <footer>
-        <!-- <p>&copy; 2025 Nova Vision. All rights reserved.</p> -->
+        <p>&copy; 2025 Nova Vision. All rights reserved.</p>
     </footer>
 </body>
 </html>

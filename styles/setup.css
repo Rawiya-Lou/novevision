@@ -96,6 +96,7 @@ html{
 body{
     font-family: var(--body-font);
     font-size: var(--fs-base);
+    height: 100%;
     user-select: none;
    
 }

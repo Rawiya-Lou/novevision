@@ -6,7 +6,13 @@
     <meta name="robots" content="index, follow">
     <meta name="description" content="get a beautiful website and easy booking! We offer web design and development services to help your business shine online">
     <!-- fonts -->
-    <link href="fonts.googleapis.com" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<!-- styles -->
     <link rel="stylesheet" href="styles/setup.css">
     <link rel="stylesheet" href="styles/style.css">
     <title>Nova Vision landing page with booking form</title>
@@ -15,7 +21,7 @@
 <div class="bg-color-overlay">
     <div class="bg-image"></div>
 </div>
-    <header class="header flex-center glass-effect" id="header">
+    <header class="header flex-center flex-container glass-effect" id="header">
         <div class="header__logo">
             <a href="/"><img src="images/novavisuals-logo.svg" alt="novavision logo" class="logo"></a>
         </div>
@@ -24,7 +30,16 @@
 
     <main>
         
-        <section class="hero-section">
+        <section class="hero-section hero flex-container justify-end">
+            <div class="hero__content flex-container justify-end align-start  flex-coloumn">
+                <h1 class="hero__title">Nova Vision</h1>
+                <h2 class="hero__subtitle">Where innovation meets design</h2>
+                <p class="hero__para">Your Gateway to a Stunning Online Presence Nova Vision is a front-end web development and web design studio dedicated to crafting visually stunning and highly functional websites.</p>
+                <a href="#form">
+                    <button class="scroll-down-btn hero__btn">Book <img src="images/Btn-icon.svg" alt="Scroll down btn icon" class="btn-icon"></button>
+
+                </a>
+            </div>
            
 
         </section>

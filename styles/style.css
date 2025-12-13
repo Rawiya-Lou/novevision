@@ -14,10 +14,9 @@ header{
 }
 
 .logo{
-      width: var(--space-xl); /* Controls size */
-  height: auto;
- 
-  transition: filter 0.3s ease;
+    width: var(--space-xl); /* Controls size */
+    height: auto;
+    transition: filter 0.3s ease;
 }
 
 .logo:hover{
@@ -54,7 +53,78 @@ header{
 }
 
 
+/* hero section */
+.hero-section {
+    padding: var(--space-xl) var(--space-md);
+    margin-top: var(--space-xl);
+}
+.hero__content{
+    width: 50%;
+    padding: var(--space-md);
+    gap: 32px;
 
+}
+
+.hero__para{
+    max-width: 50ch;
+    min-width: 29ch;
+    color: var(--bright-snow);
+}
+
+/* button */
+
+.hero__btn{
+    padding: var(--space-sm) var(--space-md) var(--space-sm) var(--space-sm);
+    width: calc(var(--space-3xl) * 2);
+    height: var(--space-3xl);
+    font-size: var(--base-font-size);
+    font-weight: 600;
+    background-color: var(--platinum);
+    border-radius: var(--space-sm);
+    border: 1px solid var(--gunmetal);
+    color: var(--gunmetal);
+    position: relative;
+    box-shadow: var(--btn-shadow), var(--btn-shadow-md);
+    cursor: pointer;
+    transition: background-color transform 50ms ease-in;
+}
  
+.hero__btn .btn-icon{
+    position: absolute;
+    top: 18px;
+    left: 78px;
+}
 
+.hero__btn:hover{
+    background-color: var(--alabaster-grey);
+    transform: scale(1.01);
+}
+.hero__btn:active{
+    background-color: var(--pale-slate);
+    outline: 1.5px solid var(--gunmetal);
+}
+
+
+@media (max-width:780px) {
+
+.hero__content{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.hero__para{
+    text-align: center;
+    
+}
+
+.hero__btn{
+    transform: scale(0.8);
+} 
+.hero__btn:hover{
+    background-color: var(--alabaster-grey);
+    transform: scale(0.81);
+}
+    
+}
 

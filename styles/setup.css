@@ -30,6 +30,7 @@
     --slate-grey: #6C757D;
     --gunmetal: #343A40;
     --shadow-grey: #212529;
+    --error-red:#a52a2a;
 
     /* spacing */
 
@@ -97,6 +98,10 @@ body{
     font-family: var(--body-font);
     font-size: var(--fs-base);
     height: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
    
 }

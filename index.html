@@ -20,47 +20,67 @@
 <body>
     <div class="bg-color-overlay">
     <div class="bg-image"></div>
-</div>
+    </div>
     <header class="header flex-center flex-container glass-effect" id="header">
         <div class="header__logo">
             <a href="/"><img src="images/novavisuals-logo.svg" alt="novavision logo" class="logo"></a>
         </div>
-       
     </header>
     
     <main>
         
     <section class="hero-section hero flex-container justify-end">
-        <div class="hero__content flex-container justify-end align-start  flex-coloumn">
+        <div class="hero__content flex-container align-start  flex-coloumn justify-center">
             <h1 class="hero__title">Nova Vision</h1>
             <h2 class="hero__subtitle">Where innovation meets design</h2>
             <p class="hero__para">Your Gateway to a Stunning Online Presence Nova Vision is a front-end web development and web design studio dedicated to crafting visually stunning and highly functional websites.</p>
-            <a href="#form"><button class="scroll-down-btn hero__btn">Book <img src="images/Btn-icon.svg" alt="Scroll down btn icon" class="btn-icon"></button></a>
+            <a href="#form"><button class="scroll-down-btn hero__btn btn">Book <img src="images/Btn-icon.svg" alt="Scroll down btn icon" class="btn-icon"></button></a>
         </div>
     </section>
         </div>
         <section class="form-section">
-            <form action="" id="form" class="form">
-                <h3>Fill the form</h3>
+            <form action="" id="form" class="form flex-center flex-container flex-coloumn">
+                <h3 class="form__title">Fill the form</h3>
+                <div class="form-content">
 
                 <div><label class="label name-label" for="name" id="label">Full Name:</label><input type="text" id="name" class="name-info info-input" name="FullName" placeholder="Enter your full name"></div>
 
-                <div><div class="country-code">(+213) DZ</div><label class="label number-label" for="phone">Phone Number:</label><input type="tel" id="phone" class="phone-info info-input" placeholder="Enter your phone number"></div>
+                <div>
+                    <label class="label number-label" for="phone">Phone Number:</label>
+                    <div class="phone-wrap flex-container flex-nowrap"><span class="country-code">(+213) DZ</span><input type="tel" id="phone" class="phone-info info-input" placeholder="Enter your phone number"></div>
+                    </div>
 
                 <div>
-                    <p>Choose a Service:</p>
-                    <input type="checkbox" id="graphic" name="Service" value="Graphic design"><label for="graphic">Graphic Design</label>
+                    <p class="subtitle">Choose a Service:</p>
 
-                     <input type="checkbox" id="business" name="Service" value="Business cards"><label for="business">Business Cards</label>
+                    <div class="checkbox-wrapp">
+                        <input type="checkbox" id="graphic" name="Service" value="Graphic design" class="input checkbox-input">
+                    
+                        <label for="graphic">Graphic Design</label><br>
+                    </div>
+                     <div class="checkbox-wrapp">
+                         <input type="checkbox" id="business" name="Service" value="Business cards" class="input checkbox-input">
+                        
+                         <label for="business">Business Cards</label><br>
+                    </div>
 
-                      <input type="checkbox" id="identification" name="Service" value="Identification Cards"><label for="identification">Identification Cards</label>
+                      <div class="checkbox-wrapp">
+                        
+                          <input type="checkbox" id="identification" name="Service" value="Identification Cards" class="input checkbox-input">
+                          <label for="identification">Identification Cards</label><br>
+                    </div>
 
-                       <input type="checkbox" id="promotional" name="Service" value="Promotional materials"><label for="promotional">Promotional Materials</label>
+                       <div class="checkbox-wrapp">
+                           <input type="checkbox" id="promotional" name="Service" value="Promotional materials" class="input checkbox-input">
+                           <label for="promotional">Promotional Materials</label><br>
+                    </div>
+
                 </div>
 
                 <div>
-                    <label for="cities">Select a City:</label>
-                    <select name="City" id="cities">
+                    <label for="cities" class="subtitle">Select a City:</label>
+                    <div id="select-container"></div>
+                    <select name="City" id="cities" class="info-select">
                         <option value="" disabled selected>Select an option</option>
                         <option value="algiers">Algiers</option>
                         <option value="oran">Oran</option>
@@ -102,17 +122,19 @@
                         <option value="el-oued">El Oued</option>
                     </select>
                 </div>
-                <div class="calendar-container"><p>Date and Time:</p></div>
+                <div class="calendar-container"><p class="subtitle">Date and Time:</p></div>
 
-                <div><label for="message">Leave a message:</label>
-                <textarea name="Message" id="message" placeholder="Write a message"></textarea></div>
+                <div><label for="message" class="label message-label">Leave a message:</label>
+                <textarea name="Message" id="message" class="message-info" placeholder="Write a message"></textarea></div>
                 <button type="submit" class="submit-btn btn" id="submit-form-btn">Send</button>
+                </div>
 
             </form>
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Nova Vision. All rights reserved.</p>
+        <p>&copy; 2025 <a href="/">Nova Vision</a>. All rights reserved.</p>
     </footer>
+    <script src="scripts/script.js"></script>
 </body>
 </html>

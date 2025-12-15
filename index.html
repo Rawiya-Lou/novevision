@@ -15,6 +15,7 @@
 <!-- styles -->
     <link rel="stylesheet" href="styles/setup.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/calendar.css">
     <title>Nova Vision landing page with booking form</title>
 </head>
 <body>
@@ -37,7 +38,6 @@
             <a href="#form"><button class="scroll-down-btn hero__btn btn">Book <img src="images/Btn-icon.svg" alt="Scroll down btn icon" class="btn-icon"></button></a>
         </div>
     </section>
-        </div>
         <section class="form-section">
             <form action="" id="form" class="form flex-center flex-container flex-coloumn">
                 <h3 class="form__title">Fill the form</h3>
@@ -80,51 +80,33 @@
                 <div>
                     <label for="cities" class="subtitle">Select a City:</label>
                     <div id="select-container"></div>
-                    <select name="City" id="cities" class="info-select">
-                        <option value="" disabled selected>Select an option</option>
-                        <option value="algiers">Algiers</option>
-                        <option value="oran">Oran</option>
-                        <option value="constantine">Constantine</option>
-                        <option value="annaba">Annaba</option>
-                        <option value="batna">Batna</option>
-                        <option value="setif">Setif</option>
-                        <option value="blida">Blida</option>
-                        <option value="chlef">Chlef</option>
-                        <option value="bejaia">Bejaia</option>
-                        <option value="tlemcen">Tlemcen</option>
-                        <option value="ouargla">Ouargla</option>
-                        <option value="skikda">Skikda</option>
-                        <option value="el-oudja">El Oued</option>
-                        <option value="tizi-ouzou">Tizi Ouzou</option>
-                        <option value="mascara">Mascara</option>
-                        <option value="ghardaia">Ghardaia</option>
-                        <option value="laghouat">Laghouat</option>
-                        <option value="boumerdes">Boumerdes</option>
-                        <option value="el-tarf">El Tarf</option>
-                        <option value="ain-temouchent">Ain Temouchent</option>
-                        <option value="sidi-bel-abbes">Sidi Bel Abbès</option>
-                        <option value="khenchela">Khenchela</option>
-                        <option value="tipaza">Tipaza</option>
-                        <option value="ain-defla">Ain Defla</option>
-                        <option value="relizane">Relizane</option>
-                        <option value="mostaganem">Mostaganem</option>
-                        <option value="el-bayadh">El Bayadh</option>
-                        <option value="bechar">Bechar</option>
-                        <option value="biskra">Biskra</option>
-                        <option value="mila">Mila</option>
-                        <option value="tamanrasset">Tamanrasset</option>
-                        <option value="adrar">Adrar</option>
-                        <option value="tindouf">Tindouf</option>
-                        <option value="ain-salah">Ain Salah</option>
-                        <option value="el-menia">El Menia</option>
-                        <option value="souq-ahras">Souq Ahras</option>
-                        <option value="tissemsilt">Tissemsilt</option>
-                        <option value="el-oued">El Oued</option>
-                    </select>
+                    
                 </div>
-                <div class="calendar-container"><p class="subtitle">Date and Time:</p></div>
+                <div class="calendar-container">
+                    <p class="subtitle">Date and Time:</p>
+                    <div class="date-container">
+                        <h3 class="month">month</h3>
+                        <div class="days">
+                            <div class="day">
+                                <button class="day-digit">15</button>
+                                <p class="day-text">monday</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-container">
+                        <p class="time-subtitle">Pick a time:</p>
+                         <div class="time">
+                                <button class="hour">15:00</button>
+                            
+                            </div>
 
-                <div><label for="message" class="label message-label">Leave a message:</label>
+
+                    </div>
+                    
+                </div>
+
+                <div>
+                    <label for="message" class="label message-label">Leave a message:</label>
                 <textarea name="Message" id="message" class="message-info" placeholder="Write a message"></textarea></div>
                 <button type="submit" class="submit-btn btn" id="submit-form-btn">Send</button>
                 </div>
@@ -136,5 +118,6 @@
         <p>&copy; 2025 <a href="/">Nova Vision</a>. All rights reserved.</p>
     </footer>
     <script src="scripts/script.js"></script>
+    <script src="scripts/calendar.js"></script>
 </body>
 </html>

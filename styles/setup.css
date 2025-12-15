@@ -49,37 +49,10 @@
 
     /* shadows */
 
-    /* sm shadow */
-
-    --btn-shadow-sm-color: rgba(0, 0, 0, 0.25);
-    --btn-shadow-sm-offset-x: 2px;
-    --btn-shadow-sm-offset-y: 2px;
-    --btn-shadow-sm-blur: 4px;
-    --btn-shadow-spread: 0;
-
-    /* md shadow */
-
-    --btn-shadow-md-color: rgba(233, 236, 239, 0.35);
-    --btn-shadow-md-offset-x: 5px;
-    --btn-shadow-md-offset-y: 4px;
-    --btn-shadow-md-blur: 6px;
-
-
-    /* button boxshadow */
     --btn-shadow: 2px 2px 4px 0 rgba(0,0,0,0.25);
     --btn-shadow-md: 5px 4px 6px 0 rgba(233, 236, 239, 0.35);
 
-    --shadow-sm: var(--btn-shadow-sm-offset-x), var(--btn-shadow-sm-offset-y), var(--btn-shadow-sm-blur), var(--btn-shadow-spread), var(--btn-shadow-sm-color);
-
-    --shadow-md: var(--btn-shadow-md-offset-x), var(--btn-shadow-md-offset-y), var(--btn-shadow-md-blur), var(--btn-shadow-spread), var(--btn-shadow-md-color);
-
-    /* date shadow */
-
-    --date-shadow: var(--btn-shadow-sm-offset-x), var(--btn-shadow-sm-offset-y), var(--btn-shadow-md-blur), var(--btn-shadow-spread), var(--btn-shadow-sm-color) ;
-
-    --date-shadow-2: var(--btn-shadow-sm-offset-x), var(--btn-shadow-sm-offset-y), var(--btn-shadow-md-blur), var(--btn-shadow-spread), var(--btn-shadow-md-color) ;
-
-
+    --btn-date-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.25);
 }
 
 *,

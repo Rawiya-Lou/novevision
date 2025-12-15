@@ -1,0 +1,97 @@
+@import url('setup.css');
+
+.calendar-container{
+    width: 400px;
+}
+
+.time-subtitle{
+    font: var(--fs-base);
+    font-weight: bold;
+    color: var(--gunmetal);
+}
+
+.month{
+    text-align: center;
+    margin: 0 auto;
+    text-transform: capitalize;
+    position: relative;
+    color: var(--gunmetal);
+}
+
+
+.month::after{
+    content: '';
+    background: url('../images/select-icon.svg') no-repeat center center / cover;
+    position: absolute;
+    transform: rotate(-90deg);
+    top:8px;
+    right: 130px;
+    width: 16px;
+    height: 16px; 
+}
+
+.days, .time{
+    display: grid;
+    grid-template-rows: auto;
+   grid-auto-flow: column;
+   grid-auto-columns: 100px;
+   gap: 16px;
+   overflow-x: auto;
+   overflow-y: hidden;
+   padding: 16px;
+}
+
+.day{
+    border: 1px solid var(--gunmetal);
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   white-space: nowrap;
+   padding: 8px;
+}
+
+.day-digit{
+    cursor: pointer;
+    border: 0.5px solid var(--slate-grey);
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--fs-base);
+    color: var(--bright-snow);
+    background-color: var(--slate-grey);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: var(--btn-date-shadow);
+    transition: transform 0.2s ease;
+    
+}
+
+.hour{
+      cursor: pointer;
+    border: 0.5px solid var(--slate-grey);
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--fs-base);
+    color: var(--bright-snow);
+    background-color: var(--slate-grey);
+    border-radius: 8px;
+    width: 100px;
+    height: 44px;
+    box-shadow: var(--btn-date-shadow);
+    transition: transform 0.2s ease;
+}
+.day-digit:hover, .hour:hover{
+   transform: scale3d(1.1, 1.1, 2);
+}
+
+.day-digit:active, .hour:active{
+    outline: 1px solid var(--shadow-grey);
+}
+
+.day-text{
+color:var(--slate-grey);
+font-weight: bold;
+text-align: center;
+
+}

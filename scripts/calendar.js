@@ -178,7 +178,7 @@ function generateWorkHours() {
   }
   return workHours;
 }
-
+let lastClickedBtn = null;
 function displayTimeSlots() {
     
     const workTimes = generateWorkHours();
@@ -193,8 +193,18 @@ function displayTimeSlots() {
 
 
         timeElem.appendChild(timeBtn)
+        
 
-        timeBtn.addEventListener('click', () =>{
+        timeBtn.addEventListener('click', () => {
+            
+            if (lastClickedBtn && lastClickedBtn !== timeBtn) {
+                lastClickedBtn.style.backgroundColor = '#6C757D'; // Or whatever the original color is
+            }
+            lastClickedBtn = timeBtn;
+
+                timeBtn.style.backgroundColor = '#212529';
+    
+            
           const input = createHiddenInput();
                 
             input.setAttribute('name', "Time");

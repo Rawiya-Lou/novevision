@@ -1,7 +1,7 @@
 @import url('setup.css');
 
 .calendar-container{
-    width: 400px;
+    width: 100%;
 }
 
 .time-subtitle{
@@ -39,21 +39,53 @@
    overflow-x: auto;
    overflow-y: hidden;
    padding: 16px;
+   -ms-overflow-style: none;
+   scrollbar-width: none;
 }
 
-.day{
+.day-btn-container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     white-space: nowrap;
     padding: 8px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 32px;
 }
 
+.day-btn-container input[type='radio']{
+ position: absolute;
+  opacity: 0;
+  pointer-events: none; 
+  height: 0;
+}
 
+.day-btn-container label{
+    display: block; 
+    position: relative;
+}
 
 .day-digit{
+    color:var(--bright-snow);
+    font-weight: 600;
+    position: absolute;
+    top: -8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+     pointer-events: none;
+}
+
+.day-btn-container label::before{
+    content: '';
     cursor: pointer;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1/ 1;
     border: 0.5px solid var(--slate-grey);
     text-align: center;
     font-weight: bold;
@@ -61,15 +93,29 @@
     color: var(--bright-snow);
     background-color: var(--slate-grey);
     border-radius: 50%;
-    width: 50px;
+    width:50px;
     height: 50px;
     box-shadow: var(--btn-date-shadow);
     transition: transform 0.2s ease;
-    
+}
+
+.day-btn-container:focus-within label::before {
+     outline: 1px solid var(--shadow-grey);
+     outline-offset: 0.5px;
+
+}
+
+.day-btn-container input[type="radio"]:checked ~ label::before {
+    background-color:var(--shadow-grey);
+    border-color: var(--shadow-grey);
+}
+
+.day-btn-container input[type="radio"]:hover ~ label::before {
+    transform: translate(-50%, -50%) scale3d(1.1, 1.1, 2);
 }
 
 .hour{
-      cursor: pointer;
+    cursor: pointer;
     border: 0.5px solid var(--slate-grey);
     text-align: center;
     font-weight: bold;
@@ -82,14 +128,18 @@
     box-shadow: var(--btn-date-shadow);
     transition: transform 0.2s ease;
 }
-.day-digit:hover, .hour:hover{
+.hour:hover{
    transform: scale3d(1.1, 1.1, 2);
 }
 
-.day-digit:active, .hour:active{
+.hour:active{
     outline: 1px solid var(--shadow-grey);
 }
-
+.date-container, .time-container{
+    width: 100%;
+    padding: 0 !important;
+    
+}
 .day-text{
 color:var(--slate-grey);
 font-weight: bold;

@@ -62,6 +62,15 @@ function getNextSevenDays() {
     return daysArray;
 }
 
+function createRadioBtn(){
+   const radioBtn = document.createElement('input');
+   radioBtn.type = 'radio';
+   radioBtn.classList.add('day-radio-btn');
+   return radioBtn;
+
+}
+console.log(createRadioBtn())
+
 function displayDays() {
     const days = getNextSevenDays();
     const daysContainer = document.getElementById("js-days");
@@ -73,34 +82,59 @@ function displayDays() {
         const dayText = parts[0];
         const dayDigit = parts[1];
 
+
+        // day container
          const dayContainer = createDivElem();
         dayContainer.setAttribute('id', "dayContainer");
-        dayContainer.classList.add("day");
+        dayContainer.classList.add("day-btn-container");
 
         // Create the day digit element
-        const dayDigitElement = document.createElement('button');
+        const dayRadioElement = createRadioBtn();
+        dayRadioElement.classList.add("day-digit-radio");
+        dayRadioElement.id = `day${dayText}`;
+        dayRadioElement.name = 'day';
+        dayRadioElement.value = day;
+
+         const dayDigitElement = document.createElement('p');
         dayDigitElement.classList.add("day-digit");
+
         dayDigitElement.textContent = dayDigit;
+
+
     
         // Create the day text element
-        const dayTextElement = document.createElement('p');
+        const dayTextElement = document.createElement('label');
         dayTextElement.classList.add("day-text");
-        dayTextElement.textContent = dayText;
+        dayTextElement.htmlFor = `day${dayText}`;
+
+        dayTextElement.textContent = `${dayText}`;
 
 
         // Append the day text and digit elements to the day container
-       dayContainer.append(dayDigitElement,dayTextElement);
+       dayContainer.append(dayRadioElement, dayDigitElement, dayTextElement);
      
         // Append the day container to the main container
         daysContainer.appendChild(dayContainer);
         
         
-        dayDigitElement.addEventListener('click', () =>{
+        dayRadioElement.addEventListener('change', () =>{
+
+            document.querySelectorAll('label').forEach(label => {
+        label.style.color = '#6C757D';
+    });
+
+            const dayTextElement = document.querySelector(`label[for="${dayRadioElement.id}"]`);
+            if(dayTextElement){
+                dayTextElement.style.color = '#212529';
+
+            }
+    
             const input = createHiddenInput();
             input.setAttribute('name', "Date");
             input.setAttribute('id', "dateData");
            input.value = dayDigit;
            console.log(input)
+           daysContainer.appendChild(input)
         
             });
     });

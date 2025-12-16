@@ -12,6 +12,9 @@
 
 header{
     height: var(--space-3xl);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo{
@@ -147,7 +150,8 @@ transition: background-color transform 50ms ease-in;
     backdrop-filter: blur(18.6px);
     -webkit-backdrop-filter: blur(18.6px);
     border: 1.5px solid #343A40;
-width: 80%;}
+width: 90%;}
+
 .form__title{
      color: var(--gunmetal);
      text-transform: capitalize;

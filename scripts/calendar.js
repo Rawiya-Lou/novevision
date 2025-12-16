@@ -134,8 +134,12 @@ function displayDays() {
             input.setAttribute('id', "dateData");
            input.value = dayDigit;
            console.log(input)
-           daysContainer.appendChild(input)
-        
+           daysContainer.appendChild(input);
+
+           while (timeContainer.firstChild) {
+        timeContainer.removeChild(timeContainer.firstChild);
+    }
+    timeContainer.appendChild(displayTimeSlots());  
             });
     });
     
@@ -189,17 +193,18 @@ function displayTimeSlots() {
 
 
         timeElem.appendChild(timeBtn)
-        timeContainer.appendChild(timeElem);
 
-    timeElem.addEventListener('click', () =>{
-      const input = createHiddenInput();
-            
-        input.setAttribute('name', "Time");
-        input.setAttribute('id', "TimeData");
-        input.value = time ;
-     });
+        timeBtn.addEventListener('click', () =>{
+          const input = createHiddenInput();
+                
+            input.setAttribute('name', "Time");
+            input.setAttribute('id', "TimeData");
+            input.value = time ;
+            timeContainer.appendChild(input);
+            console.log(input)
+         });
     });
-
+return timeElem;
 }
 
 displayTimeSlots()

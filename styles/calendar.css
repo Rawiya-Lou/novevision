@@ -18,18 +18,6 @@
     color: var(--gunmetal);
 }
 
-
-.month::after{
-    content: '';
-    background: url('../images/select-icon.svg') no-repeat center center / cover;
-    position: absolute;
-    transform: rotate(-90deg);
-    top:8px;
-    right: 130px;
-    width: 16px;
-    height: 16px; 
-}
-
 .days, .time{
     display: grid;
    grid-template-rows: auto;

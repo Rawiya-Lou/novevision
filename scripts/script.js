@@ -59,19 +59,19 @@ document.addEventListener('click', function(event) {
 
 // helper fun to validate an input field
 
-function validateInput(inputId, hintId, regex, hint){
+function validateInput(inputId, hintId, regex, Errorhint, successHint){
   const inputElement = document.getElementById(inputId);
   const hintElement = document.getElementById(hintId);
   const isValid = regex.test(inputElement.value) && inputElement.value !== '';
    if (isValid) {
     //valid state
-    hintElement.textContent = hint; 
+    hintElement.textContent = successHint; 
     hintElement.classList.remove('is-invalid');
     hintElement.classList.add('is-valid');
     inputElement.style.borderColor = 'green';
   } else {
     //invalid state
-    hintElement.textContent = hint;
+    hintElement.textContent = Errorhint;
     hintElement.classList.remove('is-valid');
     hintElement.classList.add('is-invalid');
     inputElement.style.borderColor = '#a52a2a';
@@ -86,14 +86,14 @@ function formValidation(e) {
 
    const nameRegex = /^[a-zA-Z\xC0-\uFFFF]+([ \-'][a-zA-Z\xC0-\uFFFF]+)*$/;
 
-   if (!validateInput('name', 'name-hint', nameRegex, 'Enter a valid name')) {
+   if (!validateInput('name', 'name-hint', nameRegex, 'Enter a valid name', 'Your name is valid')) {
     isValid = false;
   }
 
   // phone
   const phoneRegex =  /^(00213|\+213|0)(5|6|7)[0-9]{8}$/;
 
-  if (!validateInput('phone', 'phone-hint', phoneRegex, 'Enter a valid phone number')) {
+  if (!validateInput('phone', 'phone-hint', phoneRegex, 'Enter a valid phone number', 'Your phone number is valid')) {
     isValid = false;
   }
 
@@ -131,7 +131,7 @@ function formValidation(e) {
 
   const messageRegex = /^[a-zA-Z0-9\s]+$/ ;
 
-   if (!validateInput('message', 'message-hint', messageRegex, 'Invalid characters in text')) {
+   if (!validateInput('message', 'message-hint', messageRegex, 'Invalid characters in text', 'Valid comment')) {
     isValid = false;
   }
 
@@ -147,7 +147,7 @@ function formValidation(e) {
 
   if(!radioIsChecked) {
     isValid = false;
-    hintRadios.textContent = 'choose a day';
+    hintRadios.textContent = 'pick a day';
     hintRadios.style.color = '#a52a2a';
 
   }else{

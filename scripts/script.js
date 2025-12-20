@@ -54,3 +54,129 @@ document.addEventListener('click', function(event) {
     dropdown.querySelector('.dropdown-list').classList.add('hidden');
   }
 });
+
+// form validation
+
+// helper fun to validate an input field
+
+function validateInput(inputId, hintId, regex, hint){
+  const inputElement = document.getElementById(inputId);
+  const hintElement = document.getElementById(hintId);
+  const isValid = regex.test(inputElement.value) && inputElement.value !== '';
+   if (isValid) {
+    //valid state
+    hintElement.textContent = hint; 
+    hintElement.classList.remove('is-invalid');
+    hintElement.classList.add('is-valid');
+    inputElement.style.borderColor = 'green';
+  } else {
+    //invalid state
+    hintElement.textContent = hint;
+    hintElement.classList.remove('is-valid');
+    hintElement.classList.add('is-invalid');
+    inputElement.style.borderColor = '#a52a2a';
+  }
+return isValid;
+}
+
+function formValidation(e) {
+  e.preventDefault();
+  let isValid = true;
+  // name
+
+   const nameRegex = /^[a-zA-Z\xC0-\uFFFF]+([ \-'][a-zA-Z\xC0-\uFFFF]+)*$/;
+
+   if (!validateInput('name', 'name-hint', nameRegex, 'Enter a valid name')) {
+    isValid = false;
+  }
+
+  // phone
+  const phoneRegex =  /^(00213|\+213|0)(5|6|7)[0-9]{8}$/;
+
+  if (!validateInput('phone', 'phone-hint', phoneRegex, 'Enter a valid phone number')) {
+    isValid = false;
+  }
+
+  // checkbox
+
+  const checkboxes = document.querySelectorAll('input[name="Service"]');
+  let isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+  const hintCheckbox = document.getElementById('service-hint');
+
+  if(!isChecked){
+    hintCheckbox.textContent = 'Select at least one service.'
+    hintCheckbox.style.color = '#a52a2a';
+   isValid =  false;
+  }else{
+   isValid = true;
+  }
+
+  // dropDwon
+
+  const selectedDropdown = document.querySelector('.dropdown-selected');
+  const hintSelect = document.getElementById('city-hint');
+
+  if(selectedDropdown.textContent === 'Select a city' ){
+    isValid = false;
+    hintSelect.textContent = 'Select a city'
+    hintSelect.style.color = '#a52a2a';
+    selectedDropdown.style.borderColor = '#a52a2a'; 
+
+  }else{
+    isValid = true
+     hintSelect.textContent = ` you selected ${selectedDropdown.textContent}`
+    hintSelect.style.color = 'green';
+    selectedDropdown.style.borderColor = 'green'; 
+  }
+
+  const messageRegex = /^[a-zA-Z0-9\s]+$/ ;
+
+   if (!validateInput('message', 'message-hint', messageRegex, 'Invalid characters in text')) {
+    isValid = false;
+  }
+
+
+  // days radio button
+
+  const daysRadios = document.getElementsByName('day');
+  const hintRadios = document.getElementById('day-hint');
+  
+ 
+
+  let radioIsChecked = Array.from(daysRadios).some(radio => radio.checked);
+
+  if(!radioIsChecked) {
+    isValid = false;
+    hintRadios.textContent = 'choose a day';
+    hintRadios.style.color = '#a52a2a';
+
+  }else{
+    
+    isValid = true;
+    hintRadios.textContent = '';
+ 
+
+  }
+
+  // times radio buttons 
+
+  const timesRadios = document.getElementsByName('time');
+
+  let timeRadioIsChecked = Array.from(timesRadios).some(radio => radio.checked);
+
+  if(!timeRadioIsChecked){
+    isValid = false;
+  }else{
+    isValid = true;
+
+  }
+
+return isValid;
+}
+
+
+
+
+form.addEventListener('submit', (e) =>{
+  formValidation(e);
+})

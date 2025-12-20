@@ -65,11 +65,9 @@ function getNextSevenDays() {
 function createRadioBtn(){
    const radioBtn = document.createElement('input');
    radioBtn.type = 'radio';
-   radioBtn.classList.add('day-radio-btn');
    return radioBtn;
 
 }
-console.log(createRadioBtn())
 
 function displayDays() {
     const days = getNextSevenDays();
@@ -91,6 +89,7 @@ function displayDays() {
         // Create the day digit element
         const dayRadioElement = createRadioBtn();
         dayRadioElement.classList.add("day-digit-radio");
+        dayRadioElement.classList.add('day-radio-btn');
         dayRadioElement.id = `day${dayText}`;
         dayRadioElement.name = 'day';
         dayRadioElement.value = day;
@@ -118,8 +117,9 @@ function displayDays() {
         
         
         dayRadioElement.addEventListener('change', () =>{
+            const dayLabel = document.querySelectorAll('.day-text');
 
-            document.querySelectorAll('label').forEach(label => {
+            dayLabel.forEach(label => {
         label.style.color = '#6C757D';
     });
 
@@ -131,9 +131,8 @@ function displayDays() {
     
             const input = createHiddenInput();
             input.setAttribute('name', "Date");
-            input.setAttribute('id', "dateData");
+            input.setAttribute('id', "day-data");
            input.value = dayDigit;
-           console.log(input)
            daysContainer.appendChild(input);
 
            while (timeContainer.firstChild) {
@@ -177,38 +176,52 @@ function generateWorkHours() {
     }
   }
   return workHours;
+
 }
+
+
 let lastClickedBtn = null;
 function displayTimeSlots() {
     
     const workTimes = generateWorkHours();
     const timeElem = createDivElem();
     timeElem.classList.add('time');
-    workTimes.forEach(time => {
 
-        const timeBtn = document.createElement('button');
-        timeBtn.classList.add('hour');
-
-        timeBtn.textContent = time;
-
-
-        timeElem.appendChild(timeBtn)
-        
-
-        timeBtn.addEventListener('click', () => {
-            
-            if (lastClickedBtn && lastClickedBtn !== timeBtn) {
-                lastClickedBtn.style.backgroundColor = '#6C757D'; // Or whatever the original color is
-            }
-            lastClickedBtn = timeBtn;
-
-                timeBtn.style.backgroundColor = '#212529';
     
+    workTimes.forEach(time => {
+        
+        const timeRadio = createRadioBtn();
+        timeRadio.id = `time-${time}`;
+        timeRadio.classList.add('time-radio-btn');
+        timeRadio.name = 'time';
+        timeRadio.value = time;
+        const timeLabel = document.createElement('label');
+        timeLabel.classList.add('hour');
+        timeLabel.htmlFor = `time-${time}`;
+        timeLabel.textContent = time;
+
+
+        timeElem.append(timeRadio, timeLabel);
+
+      
+        timeRadio.addEventListener('change', () => {
+            const timeLabel = document.querySelectorAll('.hour')
+          timeLabel.forEach(label => {
+        label.style.backgroundColor = '#6C757D';
+    });
+
+       const timeLabelElem = document.querySelector(`label[for="${timeRadio.id}"]`);
+            if(timeLabelElem){
+                timeLabelElem.style.backgroundColor = '#212529';
+
+            }
+    
+
             
           const input = createHiddenInput();
                 
             input.setAttribute('name', "Time");
-            input.setAttribute('id', "TimeData");
+            input.setAttribute('id', "time-data");
             input.value = time ;
             timeContainer.appendChild(input);
             console.log(input)
@@ -219,7 +232,8 @@ return timeElem;
 
 displayTimeSlots()
 
-const form =document.getElementById('form');
+
+const form = document.getElementById('form');
 
 form.addEventListener('submit', e =>{
     e.preventDefault();

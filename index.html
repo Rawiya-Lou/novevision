@@ -43,11 +43,18 @@
                 <h3 class="form__title">Fill the form</h3>
                 <div class="form-content">
 
-                <div><label class="label name-label" for="name" id="label">Full Name:</label><input type="text" id="name" class="name-info info-input" name="FullName" placeholder="Enter your full name"></div>
+                <div><label class="label name-label" for="name" id="label">Full Name:</label><input type="text" id="name" class="name-info info-input" name="FullName" placeholder="Enter your full name">
+                    <span id="name-hint"></span>
+                </div>
+                
 
                 <div>
                     <label class="label number-label" for="phone">Phone Number:</label>
-                    <div class="phone-wrap flex-container flex-nowrap"><span class="country-code">(+213) DZ</span><input type="tel" id="phone" class="phone-info info-input" placeholder="Enter your phone number"></div>
+                    <div class="phone-wrap flex-container flex-nowrap">
+                        <span class="country-code">(+213) DZ</span>
+                        <input type="tel" id="phone" class="phone-info info-input" placeholder="Enter your phone number">
+                    </div>
+                    <span id="phone-hint"></span>
                     </div>
 
                 <div>
@@ -75,11 +82,14 @@
                            <label for="promotional">Promotional Materials</label><br>
                     </div>
 
+                    <span id="service-hint"></span>
+
                 </div>
 
                 <div>
                     <p class="subtitle">Select a City:</label>
                     <div id="select-container"></div>
+                    <span id="city-hint"></span>
                     
                 </div>
                 <div class="calendar-container" id="js-calendar-container">
@@ -87,9 +97,11 @@
                     <div class="date-container">
                         <h3 class="month" id="js-month">month</h3>
                         <div class="days" id="js-days">
-                         
+                            
                         </div>
+                        <span id="day-hint"></span>
                     </div>
+
                     <div class="time-container" id="js-time-container">
                     </div>
                     
@@ -97,7 +109,9 @@
 
                 <div>
                     <label for="message" class="label message-label">Leave a message:</label>
-                <textarea name="Message" id="message" class="message-info" placeholder="Write a message"></textarea></div>
+                <textarea name="Comment" id="message" minlength="10" maxlength="500" class="message-info" placeholder="Write a message"></textarea>
+                <span id="message-hint"></span>
+            </div>
                 <button type="submit" class="submit-btn btn" id="submit-form-btn">Send</button>
                 </div>
 

@@ -2,6 +2,7 @@
 
 .calendar-container{
     width: 100%;
+    margin: 0 auto;
 }
 
 .time-subtitle{
@@ -19,7 +20,7 @@
 }
 
 .days, .time{
-    display: grid;
+   display: grid;
    grid-template-rows: auto;
    grid-auto-flow: column;
    grid-auto-columns: 100px;
@@ -29,7 +30,15 @@
    padding: 16px;
    -ms-overflow-style: none;
    scrollbar-width: none;
+  
 }
+
+.time{
+   max-width: 100%;
+  
+}
+
+
 
 .day-btn-container{
     display: flex;
@@ -43,14 +52,14 @@
     margin-top: 32px;
 }
 
-.day-btn-container input[type='radio']{
+.day-btn-container input[type='radio'], .time input[type="radio"]{
  position: absolute;
   opacity: 0;
   pointer-events: none; 
   height: 0;
 }
 
-.day-btn-container label{
+.day-btn-container label, .time label{
     display: block; 
     position: relative;
 }
@@ -63,7 +72,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-     pointer-events: none;
+    pointer-events: none;
 }
 
 .day-btn-container label::before{
@@ -87,42 +96,41 @@
     transition: transform 0.2s ease;
 }
 
-.day-btn-container:focus-within label::before {
-     outline: 1px solid var(--shadow-grey);
+.day-btn-container:focus-within label::before, .time:focus .hour{
+     outline: 0.5px solid var(--shadow-grey);
      outline-offset: 0.5px;
 
 }
 
-.day-btn-container input[type="radio"]:checked ~ label::before {
+.day-btn-container input[type="radio"]:checked ~ label::before, .time input[type="radio"]:checked ~ .hour {
     background-color:var(--shadow-grey);
     border-color: var(--shadow-grey);
 }
 
-.day-btn-container input[type="radio"]:hover ~ label::before {
+.day-btn-container input[type="radio"]:hover ~ label::before{
     transform: translate(-50%, -50%) scale3d(1.1, 1.1, 2);
 }
 
-.hour{
+.time label{
     cursor: pointer;
-    border: 0.5px solid var(--slate-grey);
-    text-align: center;
     font-weight: bold;
+    line-height: 2.5;
     font-size: var(--fs-base);
     color: var(--bright-snow);
+    width: fit-content;
+    text-align: center;
+    width: 80px;
+    height: 44px;
+     border: 0.5px solid var(--slate-grey);
     background-color: var(--slate-grey);
     border-radius: 8px;
-    width: 100px;
-    height: 44px;
     box-shadow: var(--btn-date-shadow);
     transition: transform 0.2s ease;
 }
-.hour:hover{
+.time input[type="radio"]:hover ~ .hour  {
    transform: scale3d(1.1, 1.1, 2);
 }
 
-.hour:active{
-    outline: 1px solid var(--shadow-grey);
-}
 .date-container, .time-container{
     width: 100%;
     padding: 0 !important;

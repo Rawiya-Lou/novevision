@@ -109,6 +109,7 @@ function formValidation(e) {
    isValid =  false;
   }else{
    isValid = true;
+   hintCheckbox.textContent = '';
   }
 
   // dropDwon
@@ -178,5 +179,21 @@ return isValid;
 
 
 form.addEventListener('submit', (e) =>{
-  formValidation(e);
+  if(formValidation(e)){
+    alert('your form submitted successfully');
+     if(form){
+      form.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });}
+  }else{
+    if(form){
+      form.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+ 
 })

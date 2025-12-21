@@ -39,11 +39,11 @@
         </div>
     </section>
         <section class="form-section">
-            <form action="" id="form" class="form flex-center flex-container flex-coloumn">
+            <form action="https://script.google.com/macros/s/AKfycbzcP2hgEYN3of7OEUsrZAWp4yapqa41EqksMt5yoEIIXQID_fzI31AGzxY9QdPE66q7/exec" id="form" class="form flex-center flex-container flex-coloumn" method="post">
                 <h3 class="form__title">Fill the form</h3>
                 <div class="form-content">
 
-                <div><label class="label name-label" for="name" id="label">Full Name:</label><input type="text" id="name" class="name-info info-input" name="FullName" placeholder="Enter your full name">
+                <div><label class="label name-label" for="name" id="label">Full Name:</label><input type="text" id="name" class="name-info info-input" name="full_name" placeholder="Enter your full name">
                     <span id="name-hint"></span>
                 </div>
                 
@@ -52,7 +52,7 @@
                     <label class="label number-label" for="phone">Phone Number:</label>
                     <div class="phone-wrap flex-container flex-nowrap">
                         <span class="country-code">(+213) DZ</span>
-                        <input type="tel" id="phone" class="phone-info info-input" placeholder="Enter your phone number">
+                        <input type="tel" id="phone" name="phone_number" class="phone-info info-input" placeholder="Enter your phone number">
                     </div>
                     <span id="phone-hint"></span>
                     </div>
@@ -61,24 +61,24 @@
                     <p class="subtitle">Choose a Service:</p>
 
                     <div class="checkbox-wrapp">
-                        <input type="checkbox" id="graphic" name="Service" value="Graphic design" class="input checkbox-input">
+                        <input type="checkbox" id="graphic" name="service" value="Graphic design" class="input checkbox-input">
                     
                         <label for="graphic">Graphic Design</label><br>
                     </div>
                      <div class="checkbox-wrapp">
-                         <input type="checkbox" id="business" name="Service" value="Business cards" class="input checkbox-input">
+                         <input type="checkbox" id="business" name="service" value="Business cards" class="input checkbox-input">
                         
                          <label for="business">Business Cards</label><br>
                     </div>
 
                       <div class="checkbox-wrapp">
                         
-                          <input type="checkbox" id="identification" name="Service" value="Identification Cards" class="input checkbox-input">
+                          <input type="checkbox" id="identification" name="service" value="Identification Cards" class="input checkbox-input">
                           <label for="identification">Identification Cards</label><br>
                     </div>
 
                        <div class="checkbox-wrapp">
-                           <input type="checkbox" id="promotional" name="Service" value="Promotional materials" class="input checkbox-input">
+                           <input type="checkbox" id="promotional" name="service" value="Promotional materials" class="input checkbox-input">
                            <label for="promotional">Promotional Materials</label><br>
                     </div>
 
@@ -109,7 +109,7 @@
 
                 <div>
                     <label for="message" class="label message-label">Leave a message:</label>
-                <textarea name="Comment" id="message" minlength="10" maxlength="500" class="message-info" placeholder="Write a message"></textarea>
+                <textarea name="comment" id="message" minlength="10" maxlength="500" class="message-info" placeholder="Write a message"></textarea>
                 <span id="message-hint"></span>
             </div>
                 <button type="submit" class="submit-btn btn" id="submit-form-btn">Send</button>

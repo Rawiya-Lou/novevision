@@ -10,6 +10,7 @@ const months = [
 ];
 
 const date = new Date();
+const currentYear = date.getFullYear();
 
 function getCurrentMonth() {
     let month ='';
@@ -21,7 +22,6 @@ function getCurrentMonth() {
     }
     return {month, monthDigit};
 }
-
 function createHiddenInput(){
     const hiddenInput = document.createElement('input');
     hiddenInput.setAttribute('type', "hidden");
@@ -36,7 +36,7 @@ function createMonthElem(month){
 
     monthElem.textContent = month.month;
     const input = createHiddenInput();
-    input.setAttribute('name', "Month");
+    input.setAttribute('name', "month");
     input.setAttribute('id', "monthData");
    input.value = month.monthDigit;
   return;
@@ -130,9 +130,9 @@ function displayDays() {
             }
     
             const input = createHiddenInput();
-            input.setAttribute('name', "Date");
+            input.setAttribute('name', "date");
             input.setAttribute('id', "day-data");
-           input.value = dayDigit;
+           input.value =` ${getCurrentMonth().month}-${dayDigit}-${currentYear}`;
            daysContainer.appendChild(input);
 
            while (timeContainer.firstChild) {
@@ -220,7 +220,7 @@ function displayTimeSlots() {
             
           const input = createHiddenInput();
                 
-            input.setAttribute('name', "Time");
+            input.setAttribute('name', "time");
             input.setAttribute('id', "time-data");
             input.value = time ;
             timeContainer.appendChild(input);

@@ -1,3 +1,5 @@
+let url = 'https://script.google.com/macros/s/AKfycbzcP2hgEYN3of7OEUsrZAWp4yapqa41EqksMt5yoEIIXQID_fzI31AGzxY9QdPE66q7/exec'
+
 function selectCustom() {
     let customHtml = `<div class="custom-dropdown">
   <div class="dropdown-selected">Select a city</div>
@@ -99,11 +101,11 @@ function formValidation(e) {
 
   // checkbox
 
-  const checkboxes = document.querySelectorAll('input[name="Service"]');
-  let isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+  const checkboxes = document.querySelectorAll('input[name="service"]:checked');
+  // let isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
   const hintCheckbox = document.getElementById('service-hint');
 
-  if(!isChecked){
+  if(checkboxes.length === 0){
     hintCheckbox.textContent = 'Select at least one service.'
     hintCheckbox.style.color = '#a52a2a';
    isValid =  false;
@@ -171,6 +173,8 @@ function formValidation(e) {
     isValid = true;
 
   }
+ 
+
 
 return isValid;
 }
@@ -178,22 +182,40 @@ return isValid;
 
 
 
-form.addEventListener('submit', (e) =>{
-  if(formValidation(e)){
-    alert('your form submitted successfully');
+form.addEventListener('submit', async(e) =>{
+  
+  const formData = new FormData(form);
+
+  try{
+    if(formValidation(e)){
+
+      alert('your form submitted successfully');
      if(form){
       form.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });}
-  }else{
-    if(form){
+      
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
+      console.log(response)
+
+    }else{
+      if(form){
       form.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
     }
+    }
+   
+  }catch(error){
+    console.error('Error:', error);
+
   }
+  
 
  
 })

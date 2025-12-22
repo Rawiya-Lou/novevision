@@ -9,6 +9,23 @@ const months = [
   "July", "August", "September", "October", "November", "December"
 ];
 
+let allBookings = [];
+
+async function preloadBookings() {
+    
+    try {
+        const response = await fetch(`${url}?action=getBookings`);
+        allBookings = await response.json(); // Data is now preloaded
+        console.log("Data preloaded successfully", allBookings);
+        updateAvailability()
+        displayDays(); 
+    } catch (error) {
+        console.error("Failed to preload:", error);
+    }
+}
+preloadBookings();
+
+
 const date = new Date();
 const currentYear = date.getFullYear();
 
@@ -72,7 +89,7 @@ function createRadioBtn(){
 function displayDays() {
     const days = getNextSevenDays();
     const daysContainer = document.getElementById("js-days");
-    daysContainer.innerHTML = ""; // Clear previous content
+    daysContainer.innerHTML = ""; 
 
     days.forEach(day => {
         const dayString = day;
@@ -99,46 +116,44 @@ function displayDays() {
 
         dayDigitElement.textContent = dayDigit;
 
-
-    
-        // Create the day text element
         const dayTextElement = document.createElement('label');
         dayTextElement.classList.add("day-text");
         dayTextElement.htmlFor = `day${dayText}`;
 
         dayTextElement.textContent = `${dayText}`;
 
-
-        // Append the day text and digit elements to the day container
        dayContainer.append(dayRadioElement, dayDigitElement, dayTextElement);
      
-        // Append the day container to the main container
         daysContainer.appendChild(dayContainer);
         
         
         dayRadioElement.addEventListener('change', () =>{
-            const dayLabel = document.querySelectorAll('.day-text');
+          const dayLabel = document.querySelectorAll('.day-text');
+          
+          dayLabel.forEach(label => {
+            label.style.color = '#6C757D';
+          });
+          
+          const dayTextElement = document.querySelector(`label[for="${dayRadioElement.id}"]`);
+          if(dayTextElement){
+            dayTextElement.style.color = '#212529';
+            
+          }
+           timeContainer.innerHTML = "";
 
-            dayLabel.forEach(label => {
-        label.style.color = '#6C757D';
-    });
+    const timeSlotsElement = displayTimeSlots();
+  
+    timeContainer.appendChild(timeSlotsElement);
+    updateAvailability();
 
-            const dayTextElement = document.querySelector(`label[for="${dayRadioElement.id}"]`);
-            if(dayTextElement){
-                dayTextElement.style.color = '#212529';
-
-            }
+ let existingInput = document.getElementById("day-data");
+    if(existingInput) existingInput.remove();
     
             const input = createHiddenInput();
             input.setAttribute('name', "date");
             input.setAttribute('id', "day-data");
            input.value =` ${getCurrentMonth().month}-${dayDigit}-${currentYear}`;
            daysContainer.appendChild(input);
-
-           while (timeContainer.firstChild) {
-        timeContainer.removeChild(timeContainer.firstChild);
-    }
-    timeContainer.appendChild(displayTimeSlots());  
             });
     });
     
@@ -163,8 +178,6 @@ function generateWorkHours() {
       const formattedMinute = String(minute).padStart(2, '0');
       const currentTime = `${formattedHour}:${formattedMinute}`;
      
-
-      // Check if the current time falls within the break period
       const isDuringBreak =
         (hour === breakStartHour && minute >= breakStartMinute && hour <= breakEndHour && minute < breakEndMinute) ||
         (hour > breakStartHour && hour < breakEndHour) ||
@@ -204,28 +217,22 @@ function displayTimeSlots() {
         timeElem.append(timeRadio, timeLabel);
 
       
-        timeRadio.addEventListener('change', () => {
-            const timeLabel = document.querySelectorAll('.hour')
-          timeLabel.forEach(label => {
-        label.style.backgroundColor = '#6C757D';
+      timeRadio.addEventListener('change', () => {
+    const allLabels = document.querySelectorAll('.hour');
+    
+    allLabels.forEach(label => {
+        const linkedInput = document.getElementById(label.htmlFor);
+        if (linkedInput && !linkedInput.disabled) {
+            label.style.backgroundColor = '#6C757D';
+        }
     });
 
-       const timeLabelElem = document.querySelector(`label[for="${timeRadio.id}"]`);
-            if(timeLabelElem){
-                timeLabelElem.style.backgroundColor = '#212529';
+    const timeLabelElem = document.querySelector(`label[for="${timeRadio.id}"]`);
+    if (timeLabelElem && !timeRadio.disabled) {
+        timeLabelElem.style.backgroundColor = '#212529';
+    }
+});
 
-            }
-    
-
-            
-          const input = createHiddenInput();
-                
-            input.setAttribute('name', "time");
-            input.setAttribute('id', "time-data");
-            input.value = time ;
-            timeContainer.appendChild(input);
-            console.log(input)
-         });
     });
 return timeElem;
 }
@@ -235,7 +242,48 @@ displayTimeSlots()
 
 const form = document.getElementById('form');
 
-form.addEventListener('submit', e =>{
-    e.preventDefault();
-    displayDays()
-})
+const workingHours = generateWorkHours();
+
+function updateAvailability() {
+    const selectedDayRadio = document.querySelector('input[name="day"]:checked');
+    if (!selectedDayRadio || allBookings.length === 0) return;
+
+    const parts = selectedDayRadio.value.split(' '); 
+    const dayDigit = parts[1];
+
+    const formattedDate = `${getCurrentMonth().month}-${dayDigit}-${currentYear}`.trim().toLowerCase();
+    const totalPossibleSlots = generateWorkHours().length;
+    const bookedHoursForDay = allBookings
+        .filter(b => b.date.trim().toLowerCase() === formattedDate)
+        .map(b => b.time.trim().toLowerCase());
+
+    const timeRadios = document.querySelectorAll('input[name="time"]');
+
+      if (bookedHoursForDay.length >= totalPossibleSlots) {
+        selectedDayRadio.disabled = true;
+        const dayLabel = document.querySelector(`label[for="${selectedDayRadio.id}"]`);
+        if (dayLabel) {
+            dayLabel.style.color = '#6C757D';
+            dayLabel.style.textDecoration = 'line-through';
+            dayLabel.style.cursor = 'not-allowed';
+        }
+    }
+    
+    timeRadios.forEach(radio => {
+        const label = document.querySelector(`label[for="${radio.id}"]`);
+        const isBooked = bookedHoursForDay.includes(radio.value.trim().toLowerCase());
+
+        if (isBooked) {
+            radio.disabled = true;
+            if (label) {
+                label.style.backgroundColor = '#E9ECEF'; 
+                label.style.color = '#CED4DA';      
+                label.style.borderColor = '#CED4DA';      
+                     
+                label.style.cursor = 'not-allowed';
+                label.style.pointerEvents = 'none';  
+            }
+        }
+    });
+}
+

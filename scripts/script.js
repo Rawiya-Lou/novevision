@@ -1,4 +1,4 @@
-let url = 'https://script.google.com/macros/s/AKfycbzcP2hgEYN3of7OEUsrZAWp4yapqa41EqksMt5yoEIIXQID_fzI31AGzxY9QdPE66q7/exec'
+let url = 'https://script.google.com/macros/s/AKfycbwSA2eHcOyCNcHltS6lqjRsmpyKyipJ46avdgnHx7WClR0QdEJILmYupaW9HdxZdPYs/exec'
 
 function selectCustom() {
     let customHtml = `<div class="custom-dropdown">
@@ -45,11 +45,21 @@ document.querySelectorAll('.dropdown-list li').forEach(function(item) {
     selectedItem.textContent = selectedText;
     selectedItem.style.backgroundColor = '#212529';
     selectedItem.style.color = '#F8F9FA';
-    this.parentElement.classList.add('hidden'); 
+    this.parentElement.classList.add('hidden');
+   
+     let selectData = document.getElementById('city-data');
+    if (!selectData) {
+      selectData = createHiddenInput();
+      selectData.id = 'city-data';
+      selectData.name = 'city';
+      
+      document.getElementById('form').appendChild(selectData);
+    }
+      selectData.value = selectedText;
+  
   });
 });
 
-// Close the dropdown if clicked outside
 document.addEventListener('click', function(event) {
   const dropdown = document.querySelector('.custom-dropdown');
   if (!dropdown.contains(event.target)) {
@@ -83,6 +93,7 @@ return isValid;
 
 function formValidation(e) {
   e.preventDefault();
+   displayDays();
   let isValid = true;
   // name
 
@@ -102,7 +113,6 @@ function formValidation(e) {
   // checkbox
 
   const checkboxes = document.querySelectorAll('input[name="service"]:checked');
-  // let isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
   const hintCheckbox = document.getElementById('service-hint');
 
   if(checkboxes.length === 0){
@@ -130,6 +140,7 @@ function formValidation(e) {
      hintSelect.textContent = ` you selected ${selectedDropdown.textContent}`
     hintSelect.style.color = 'green';
     selectedDropdown.style.borderColor = 'green'; 
+  
   }
 
   const messageRegex = /^[a-zA-Z0-9\s]+$/ ;
@@ -174,8 +185,6 @@ function formValidation(e) {
 
   }
  
-
-
 return isValid;
 }
 
@@ -190,15 +199,18 @@ form.addEventListener('submit', async(e) =>{
     if(formValidation(e)){
 
       alert('your form submitted successfully');
+       await preloadBookings();
+
      if(form){
       form.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });}
-      
+
       const response = await fetch(form.action, {
         method: 'POST',
-        body: formData
+        body: formData,
+        mode: 'no-cors'
       });
       console.log(response)
 
@@ -213,9 +225,11 @@ form.addEventListener('submit', async(e) =>{
    
   }catch(error){
     console.error('Error:', error);
+    alert('There was an error sending your data.');
 
   }
-  
-
+ 
+  form.reset();
+form.scrollIntoView({ behavior: 'smooth', block: 'start' });
  
 })

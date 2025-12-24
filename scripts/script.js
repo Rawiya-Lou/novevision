@@ -1,4 +1,4 @@
-let url = 'https://script.google.com/macros/s/AKfycbwSA2eHcOyCNcHltS6lqjRsmpyKyipJ46avdgnHx7WClR0QdEJILmYupaW9HdxZdPYs/exec'
+let url = 'https://script.google.com/macros/s/AKfycbydLF6M0UdWazwjrOZa2pw3MNf9H2bSg8FjVty-1MewMBNHwgD9qbuweLJsvPZzzSwl/exec'
 
 function selectCustom() {
     let customHtml = `<div class="custom-dropdown">
@@ -90,146 +90,134 @@ function validateInput(inputId, hintId, regex, Errorhint, successHint){
   }
 return isValid;
 }
+// Real-time listeners for immediate green/red feedback
+const fields = [
+  { id: 'name', hint: 'name-hint', regex: /^[a-zA-Z\xC0-\uFFFF]+([ \-'][a-zA-Z\xC0-\uFFFF]+)*$/, error: 'Enter a valid name', success: 'Name is valid' },
+  { id: 'phone', hint: 'phone-hint', regex: /^(05|06|07)\d{8}$/, error: 'Enter 10-digit mobile', success: 'Phone is valid' },
+  { id: 'message', hint: 'message-hint', regex: /^[a-zA-Z0-9\s.,!?]+$/, error: 'Invalid characters', success: 'Valid' }
+];
+
+fields.forEach(field => {
+  const el = document.getElementById(field.id);
+  if (el) {
+    el.addEventListener('input', () => {
+      validateInput(field.id, field.hint, field.regex, field.error, field.success);
+    });
+  }
+});
 
 function formValidation(e) {
   e.preventDefault();
-   displayDays();
   let isValid = true;
-  // name
 
-   const nameRegex = /^[a-zA-Z\xC0-\uFFFF]+([ \-'][a-zA-Z\xC0-\uFFFF]+)*$/;
-
-   if (!validateInput('name', 'name-hint', nameRegex, 'Enter a valid name', 'Your name is valid')) {
+  // 1. Name Validation
+  const nameRegex = /^[a-zA-Z\xC0-\uFFFF]+([ \-'][a-zA-Z\xC0-\uFFFF]+)*$/;
+  if (!validateInput('name', 'name-hint', nameRegex, 'Enter a valid name', 'Your name is valid')) {
     isValid = false;
   }
 
-  // phone
-  const phoneRegex =  /^(00213|\+213|0)(5|6|7)[0-9]{8}$/;
-
-  if (!validateInput('phone', 'phone-hint', phoneRegex, 'Enter a valid phone number', 'Your phone number is valid')) {
+  // 2. Phone Validation (Updated for 10-digit mobile)
+  const phoneRegex = /^(05|06|07)\d{8}$/; 
+  if (!validateInput('phone', 'phone-hint', phoneRegex, 'Enter 10-digit mobile number', 'Valid')) {
     isValid = false;
   }
 
-  // checkbox
-
+  // 3. Checkbox Validation
   const checkboxes = document.querySelectorAll('input[name="service"]:checked');
   const hintCheckbox = document.getElementById('service-hint');
-
-  if(checkboxes.length === 0){
-    hintCheckbox.textContent = 'Select at least one service.'
+  if (checkboxes.length === 0) {
+    hintCheckbox.textContent = 'Select at least one service.';
     hintCheckbox.style.color = '#a52a2a';
-   isValid =  false;
-  }else{
-   isValid = true;
-   hintCheckbox.textContent = '';
+    isValid = false; 
+  } else {
+    hintCheckbox.textContent = '';
   }
 
-  // dropDwon
-
+  // 4. Dropdown Validation
   const selectedDropdown = document.querySelector('.dropdown-selected');
   const hintSelect = document.getElementById('city-hint');
-
-  if(selectedDropdown.textContent === 'Select a city' ){
+  if (selectedDropdown.textContent === 'Select a city') {
     isValid = false;
-    hintSelect.textContent = 'Select a city'
+    hintSelect.textContent = 'Select a city';
     hintSelect.style.color = '#a52a2a';
-    selectedDropdown.style.borderColor = '#a52a2a'; 
-
-  }else{
-    isValid = true
-     hintSelect.textContent = ` you selected ${selectedDropdown.textContent}`
+    selectedDropdown.style.borderColor = '#a52a2a';
+  } else {
+    hintSelect.textContent = `You selected ${selectedDropdown.textContent}`;
     hintSelect.style.color = 'green';
-    selectedDropdown.style.borderColor = 'green'; 
-  
+    selectedDropdown.style.borderColor = 'green';
   }
 
-  const messageRegex = /^[a-zA-Z0-9\s]+$/ ;
-
-   if (!validateInput('message', 'message-hint', messageRegex, 'Invalid characters in text', 'Valid comment')) {
+  // 5. Message Validation
+  const messageRegex = /^[a-zA-Z0-9\s.,!?]+$/;
+  if (!validateInput('message', 'message-hint', messageRegex, 'Invalid characters', 'Valid')) {
     isValid = false;
   }
 
-
-  // days radio button
-
+  // 6. Radio Buttons (Days)
   const daysRadios = document.getElementsByName('day');
   const hintRadios = document.getElementById('day-hint');
-  
- 
-
-  let radioIsChecked = Array.from(daysRadios).some(radio => radio.checked);
-
-  if(!radioIsChecked) {
+  if (!Array.from(daysRadios).some(radio => radio.checked)) {
     isValid = false;
-    hintRadios.textContent = 'pick a day';
     hintRadios.style.color = '#a52a2a';
-
-  }else{
-    
-    isValid = true;
-    hintRadios.textContent = '';
- 
-
+    hintRadios.textContent = 'Please select a day';
   }
 
-  // times radio buttons 
+  return isValid;
+}
 
-  const timesRadios = document.getElementsByName('time');
+function resetVisuals() {
+  // Reset borders
+  const inputs = ['name', 'phone', 'message'];
+  inputs.forEach(id => {
+    document.getElementById(id).style.borderColor = '';
+  });
 
-  let timeRadioIsChecked = Array.from(timesRadios).some(radio => radio.checked);
+  // Reset hints
+  const hints = ['name-hint', 'phone-hint', 'service-hint', 'city-hint', 'message-hint', 'day-hint'];
+  hints.forEach(id => {
+    const hint = document.getElementById(id);
+    if (hint) {
+      hint.textContent = '';
+      hint.classList.remove('is-valid', 'is-invalid');
+    }
+  });
 
-  if(!timeRadioIsChecked){
-    isValid = false;
-  }else{
-    isValid = true;
-
-  }
- 
-return isValid;
+  // Reset Custom Dropdown
+  const selectedItem = document.querySelector('.dropdown-selected');
+  selectedItem.textContent = 'Select a city';
+  selectedItem.style.backgroundColor = '';
+  selectedItem.style.color = '';
+  selectedItem.style.borderColor = '';
 }
 
 
-
-
-form.addEventListener('submit', async(e) =>{
+form.addEventListener('submit', async (e) => {
+  e.preventDefault(); 
   
-  const formData = new FormData(form);
-
-  try{
-    if(formValidation(e)){
-
-      alert('your form submitted successfully');
-       await preloadBookings();
-
-     if(form){
-      form.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });}
-
-      const response = await fetch(form.action, {
+  if (formValidation(e)) {
+    const formData = new FormData(form);
+    
+    try {
+      // Send data first
+      await fetch(url, {
         method: 'POST',
         body: formData,
         mode: 'no-cors'
       });
-      console.log(response)
 
-    }else{
-      if(form){
-      form.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-    }
-   
-  }catch(error){
-    console.error('Error:', error);
-    alert('There was an error sending your data.');
+      alert('Your form submitted successfully');
+      
+      // Complete Reset
+      form.reset();
+      resetVisuals();
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    } catch (error) {
+      console.error('Error:', error);
+      alert('There was an error sending your data.');
+    }
+  } else {
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
- 
-  form.reset();
-form.scrollIntoView({ behavior: 'smooth', block: 'start' });
- 
-})
+});

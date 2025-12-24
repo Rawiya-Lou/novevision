@@ -150,7 +150,8 @@ transition: background-color transform 50ms ease-in;
     backdrop-filter: blur(18.6px);
     -webkit-backdrop-filter: blur(18.6px);
     border: 1.5px solid #343A40;
-width: 90%;}
+width: 90%;
+}
 
 .form__title{
      color: var(--gunmetal);

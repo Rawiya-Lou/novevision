@@ -135,6 +135,8 @@ transition: background-color transform 50ms ease-in;
 
     transform: scale(0.81);
 }
+
+
     
 }
 
@@ -151,6 +153,16 @@ transition: background-color transform 50ms ease-in;
     -webkit-backdrop-filter: blur(18.6px);
     border: 1.5px solid #343A40;
 width: 90%;
+}
+
+@media (max-width:600px) {
+    
+    .form-content{
+        padding: 0!important;
+        align-content: start; 
+    }
+
+    
 }
 
 .form__title{

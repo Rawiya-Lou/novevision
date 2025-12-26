@@ -191,12 +191,12 @@ function resetVisuals() {
 }
 
 
+const submitBtn = document.getElementById('submit-form-btn');
 form.addEventListener('submit', async (e) => {
   e.preventDefault(); 
   
   if (formValidation(e)) {
     const formData = new FormData(form);
-    const submitBtn = document.getElementById('submit-form-btn');
     const submitBtnText = submitBtn.innerText;
     
     try {

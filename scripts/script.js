@@ -222,9 +222,10 @@ form.addEventListener('submit', async (e) => {
     } catch (error) {
       console.error('Error:', error);
       alert('There was an error sending your data.');
+
     } finally{
       submitBtn.disabled = false;
-      submitBtn.innerText = originalText;
+      submitBtn.innerText = submitBtnText;
       submitBtn.style.opacity = '1';
       submitBtn.style.cursor = 'pointer';
     }

@@ -146,8 +146,8 @@ transition: background-color transform 50ms ease-in;
 .form{
     padding: var(--space-md);
     margin: var(--space-xl) auto; 
-    background: rgba(233, 233, 233, 0.07);
     border-radius: var(--space-md);
+    background: rgba(233, 233, 233, 0.07);
     box-shadow: inset 1px 1px 30px #343a4009;
     backdrop-filter: blur(18.6px);
     -webkit-backdrop-filter: blur(18.6px);

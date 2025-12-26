@@ -196,8 +196,14 @@ form.addEventListener('submit', async (e) => {
   
   if (formValidation(e)) {
     const formData = new FormData(form);
+    const submitBtn = document.getElementById('submit-form-btn');
+    const submitBtnText = submitBtn.innerText;
     
     try {
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Sending...";
+      submitBtn.style.opacity = '0.5';
+      submitBtn.style.cursor='not-allowed';
       // Send data first
       await fetch(url, {
         method: 'POST',
@@ -216,6 +222,11 @@ form.addEventListener('submit', async (e) => {
     } catch (error) {
       console.error('Error:', error);
       alert('There was an error sending your data.');
+    } finally{
+      submitBtn.disabled = false;
+      submitBtn.innerText = originalText;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
     }
   } else {
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -221,3 +221,13 @@ form.addEventListener('submit', async (e) => {
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 });
+
+// showing the whatsup icon only when scrolling down 
+window.onscroll = function() {
+  const btn = document.querySelector('.whatsapp-float');
+  if (document.documentElement.scrollTop > 300) {
+    btn.style.display = "flex";
+  } else {
+    btn.style.display = "none";
+  }
+};

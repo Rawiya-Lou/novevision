@@ -67,7 +67,7 @@ function getNextSevenDays() {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 1; i < 8; i++) {
         const nextDay = new Date(today);
         nextDay.setDate(today.getDate() + i);
         const dayOfWeek = daysOfWeek[nextDay.getDay()];

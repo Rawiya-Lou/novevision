@@ -1,4 +1,4 @@
-let url = 'https://script.google.com/macros/s/AKfycbydLF6M0UdWazwjrOZa2pw3MNf9H2bSg8FjVty-1MewMBNHwgD9qbuweLJsvPZzzSwl/exec'
+let url = 'https://script.google.com/macros/s/AKfycbxZRF9XAftAoMJ8AIiJm8NnWi-VS_FlbdciKKnsixHe6ogU0PQaflUL0mXUAZ2jcBkN/exec'
 
 function selectCustom() {
     let customHtml = `<div class="custom-dropdown">
